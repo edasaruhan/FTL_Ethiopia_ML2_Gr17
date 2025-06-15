@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>💧 Water Access Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap @5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-gradient">
+    
+    <div class="container py-5 center-wrapper">
+        <div class="text-center mb-4">
+            <h1 class="display-5 text-white fw-bold">Water Access Prediction Dashboard</h1>
+            <p class="text-white-50">Enter country-level indicators to estimate water access</p>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center min-vh-100">
+            <div class="card" >
+            <form method="POST">
+                <!-- Input Fields with Tooltips -->
+                <div class="mb-3">
+                    <label class="form-label">GDP (log):</label>
+                    <input type="number" step="0.01" name="gdp_log" class="form-control form-control-lg" placeholder="e.g., 8.0" required>
+                    <small class="text-muted">Higher GDP usually correlates with better access.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Population Density (per km²):</label>
+                    <input type="number" step="0.01" name="pop_density" class="form-control form-control-lg" placeholder="e.g., 100" required>
+                    <small class="text-muted">Higher density may strain infrastructure.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Urban Population (%):</label>
+                    <input type="number" step="0.01" name="urban_pop" class="form-control form-control-lg" placeholder="e.g., 50" required>
+                    <small class="text-muted">Higher urbanization often means better access.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Sanitation Access (%):</label>
+                    <input type="number" step="0.01" name="sanitation" class="form-control form-control-lg" placeholder="e.g., 70" required>
+                    <small class="text-muted">Sanitation is the strongest indicator of water access.</small>
+                </div>
+
+                <!-- Animated Submit Button -->
+                <button type="submit" class="btn btn-lg btn-gradient w-100 mt-3">
+                    <span class="spinner-border spinner-border-sm me-2 d-none" role="status" id="spinner"></span>
+                    Predict Water Access
+                </button>
+            </form>
+
+            <!-- Prediction Result with Animation -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="mt-4 alert {% if '.' in message %}alert-success{% else %}alert-danger{% endif %} animate__animated animate__fadeIn">
+                            {% if '.' in message %}
+                                Predicted Water Access: <strong>{{ message }}%</strong>
+                            {% else %}
+                                {{ message }}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            </div>
+        </div>
+        <!-- Footer -->
+        <p class="text-center mt-5 text-white">Built with FTL Ethiopia Group 17</p>
+    </div>
+
+    <!-- Bootstrap + Animations -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap @5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Show spinner on form submit
+        const form = document.querySelector('form');
+        const spinner = document.getElementById('spinner');
+
+        form.addEventListener('submit', function () {
+            spinner.classList.remove('d-none');
+        });
+    </script>
+</body>
+</html>
+
+
+
