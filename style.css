@@ -1,0 +1,110 @@
+/* static/style.css */
+/* Gradient Background */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body.bg-gradient::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+    backdrop-filter: blur(3px);
+}
+/* Glass Card */
+.center-wrapper{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+    font-size: 18px;
+}
+/* Overlay for better text readability */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for contrast */
+    z-index: -1;
+}
+.center-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    padding: 10px;
+    font-size: 18px;
+
+
+}
+/* Card Styling */
+.card {
+    background-color: rgba(255, 255, 255, 0.07); /* Semi-transparent card */
+    border-radius: 20px;
+    align-items: center;
+    padding: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    margin-bottom: 30px;
+    width: 600px;
+
+
+}
+
+/* Form Inputs */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #4CAF50;
+    color: white;
+}
+
+/* Alert Animations */
+.alert-success {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+         opacity: 0; 
+         transform: translateY(10px); 
+    }
+    to { opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Gradient Button */
+.btn-gradient {
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    border-radius: 25px;
+    color: white;
+    padding: 10px;
+    width: 200px;
+    display: block;
+    margin: 1rem auto 0;
+    transition: 0.4s ease;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
